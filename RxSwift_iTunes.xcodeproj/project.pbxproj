@@ -19,6 +19,7 @@
 		233C14EE2AF8FDD300098B37 /* SearchAppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233C14ED2AF8FDD300098B37 /* SearchAppModel.swift */; };
 		233C14F02AF9211900098B37 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233C14EF2AF9211900098B37 /* APIManager.swift */; };
 		233C14F32AF927AB00098B37 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 233C14F22AF927AB00098B37 /* Kingfisher */; };
+		233C14F52AF92CCD00098B37 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233C14F42AF92CCD00098B37 /* SearchViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		233C14E22AF8F36B00098B37 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		233C14ED2AF8FDD300098B37 /* SearchAppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAppModel.swift; sourceTree = "<group>"; };
 		233C14EF2AF9211900098B37 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		233C14F42AF92CCD00098B37 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 			children = (
 				233C14D12AF8EE0000098B37 /* SearchViewController.swift */,
 				233C14E22AF8F36B00098B37 /* SearchTableViewCell.swift */,
+				233C14F42AF92CCD00098B37 /* SearchViewModel.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				233C14F02AF9211900098B37 /* APIManager.swift in Sources */,
+				233C14F52AF92CCD00098B37 /* SearchViewModel.swift in Sources */,
 				233C14D22AF8EE0000098B37 /* SearchViewController.swift in Sources */,
 				233C14E32AF8F36B00098B37 /* SearchTableViewCell.swift in Sources */,
 				233C14CE2AF8EE0000098B37 /* AppDelegate.swift in Sources */,
