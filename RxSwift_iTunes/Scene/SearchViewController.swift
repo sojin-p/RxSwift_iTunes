@@ -21,7 +21,10 @@ final class SearchViewController: UIViewController {
        return view
      }()
     
-    let items = BehaviorSubject(value: ["테스트", "구름모드", "투두", "다이어리", "gjgjgk"])
+    let data: [AppInfo] = []
+    
+    lazy var items = BehaviorSubject(value: data)
+    
     let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
@@ -32,14 +35,27 @@ final class SearchViewController: UIViewController {
         configure()
         bind()
         setSearchController()
+        callRequest()
     }
     
     private func bind() {
         
         items
             .bind(to: tableView.rx.items(cellIdentifier: SearchTableViewCell.identifier, cellType: SearchTableViewCell.self)) { (row, element, cell) in
-                cell.appNameLabel.text = element
+                cell.appNameLabel.text = element.trackName
                 cell.appIconImageView.backgroundColor = .systemYellow
+            }
+            .disposed(by: disposeBag)
+        
+    }
+    
+    private func callRequest() {
+        let request = APIManager.shared.fetchData()
+            .asDriver(onErrorJustReturn: SearchAppModel(resultCount: 0, results: []))
+        
+        request
+            .drive(with: self) { owner, data in
+                owner.items.onNext(data.results)
             }
             .disposed(by: disposeBag)
         
