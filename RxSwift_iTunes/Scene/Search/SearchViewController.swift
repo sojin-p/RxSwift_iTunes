@@ -60,6 +60,8 @@ final class SearchViewController: UIViewController {
         Observable.zip(tableView.rx.itemSelected, tableView.rx.modelSelected(AppInfo.self))
             .subscribe { [weak self] index, data in
                 print("====",data)
+                let vc = AppDetailViewController()
+                self?.navigationController?.pushViewController(vc, animated: true)
             }
             .disposed(by: disposeBag)
         
