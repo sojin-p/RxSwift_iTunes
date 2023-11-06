@@ -13,7 +13,7 @@ final class SearchTableViewCell: UITableViewCell {
     
     let appNameLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 16, weight: .light)
+        label.font = .systemFont(ofSize: 17, weight: .light)
         label.textColor = .black
         return label
     }()
@@ -24,7 +24,7 @@ final class SearchTableViewCell: UITableViewCell {
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 10
         imageView.layer.borderWidth = 1
-        imageView.layer.borderColor = UIColor.systemGray4.cgColor
+        imageView.layer.borderColor = UIColor.systemGray5.cgColor
         return imageView
     }()
     
