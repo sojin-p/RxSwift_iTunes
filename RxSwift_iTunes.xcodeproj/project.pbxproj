@@ -9,19 +9,24 @@
 /* Begin PBXBuildFile section */
 		233C14CE2AF8EE0000098B37 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233C14CD2AF8EE0000098B37 /* AppDelegate.swift */; };
 		233C14D02AF8EE0000098B37 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233C14CF2AF8EE0000098B37 /* SceneDelegate.swift */; };
-		233C14D22AF8EE0000098B37 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233C14D12AF8EE0000098B37 /* ViewController.swift */; };
+		233C14D22AF8EE0000098B37 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233C14D12AF8EE0000098B37 /* SearchViewController.swift */; };
 		233C14D72AF8EE0400098B37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 233C14D62AF8EE0400098B37 /* Assets.xcassets */; };
 		233C14DA2AF8EE0400098B37 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 233C14D82AF8EE0400098B37 /* LaunchScreen.storyboard */; };
+		233C14E32AF8F36B00098B37 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233C14E22AF8F36B00098B37 /* SearchTableViewCell.swift */; };
+		233C14E62AF8F3C800098B37 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 233C14E52AF8F3C800098B37 /* SnapKit */; };
+		233C14E92AF8F56900098B37 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 233C14E82AF8F56900098B37 /* RxCocoa */; };
+		233C14EB2AF8F56900098B37 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 233C14EA2AF8F56900098B37 /* RxSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		233C14CA2AF8EE0000098B37 /* RxSwift_iTunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxSwift_iTunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		233C14CD2AF8EE0000098B37 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		233C14CF2AF8EE0000098B37 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		233C14D12AF8EE0000098B37 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		233C14D12AF8EE0000098B37 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		233C14D62AF8EE0400098B37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		233C14D92AF8EE0400098B37 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		233C14DB2AF8EE0400098B37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		233C14E22AF8F36B00098B37 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +34,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				233C14EB2AF8F56900098B37 /* RxSwift in Frameworks */,
+				233C14E92AF8F56900098B37 /* RxCocoa in Frameworks */,
+				233C14E62AF8F3C800098B37 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,14 +62,23 @@
 		233C14CC2AF8EE0000098B37 /* RxSwift_iTunes */ = {
 			isa = PBXGroup;
 			children = (
+				233C14E12AF8F35500098B37 /* Scene */,
 				233C14CD2AF8EE0000098B37 /* AppDelegate.swift */,
 				233C14CF2AF8EE0000098B37 /* SceneDelegate.swift */,
-				233C14D12AF8EE0000098B37 /* ViewController.swift */,
 				233C14D62AF8EE0400098B37 /* Assets.xcassets */,
 				233C14D82AF8EE0400098B37 /* LaunchScreen.storyboard */,
 				233C14DB2AF8EE0400098B37 /* Info.plist */,
 			);
 			path = RxSwift_iTunes;
+			sourceTree = "<group>";
+		};
+		233C14E12AF8F35500098B37 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				233C14D12AF8EE0000098B37 /* SearchViewController.swift */,
+				233C14E22AF8F36B00098B37 /* SearchTableViewCell.swift */,
+			);
+			path = Scene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -80,6 +97,11 @@
 			dependencies = (
 			);
 			name = RxSwift_iTunes;
+			packageProductDependencies = (
+				233C14E52AF8F3C800098B37 /* SnapKit */,
+				233C14E82AF8F56900098B37 /* RxCocoa */,
+				233C14EA2AF8F56900098B37 /* RxSwift */,
+			);
 			productName = RxSwift_iTunes;
 			productReference = 233C14CA2AF8EE0000098B37 /* RxSwift_iTunes.app */;
 			productType = "com.apple.product-type.application";
@@ -108,6 +130,10 @@
 				Base,
 			);
 			mainGroup = 233C14C12AF8EE0000098B37;
+			packageReferences = (
+				233C14E42AF8F3C800098B37 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				233C14E72AF8F56900098B37 /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			productRefGroup = 233C14CB2AF8EE0000098B37 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -134,7 +160,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				233C14D22AF8EE0000098B37 /* ViewController.swift in Sources */,
+				233C14D22AF8EE0000098B37 /* SearchViewController.swift in Sources */,
+				233C14E32AF8F36B00098B37 /* SearchTableViewCell.swift in Sources */,
 				233C14CE2AF8EE0000098B37 /* AppDelegate.swift in Sources */,
 				233C14D02AF8EE0000098B37 /* SceneDelegate.swift in Sources */,
 			);
@@ -357,6 +384,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		233C14E42AF8F3C800098B37 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.0;
+			};
+		};
+		233C14E72AF8F56900098B37 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		233C14E52AF8F3C800098B37 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 233C14E42AF8F3C800098B37 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		233C14E82AF8F56900098B37 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 233C14E72AF8F56900098B37 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		233C14EA2AF8F56900098B37 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 233C14E72AF8F56900098B37 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 233C14C22AF8EE0000098B37 /* Project object */;
 }
