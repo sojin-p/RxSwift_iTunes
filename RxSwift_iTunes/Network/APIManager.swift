@@ -20,11 +20,13 @@ final class APIManager {
     
     private init() { }
     
-    func fetchData() -> Observable<SearchAppModel> {
+    func fetchData(query: String) -> Observable<SearchAppModel> {
         
         return Observable<SearchAppModel>.create { observer in
             
-            let urlString = "https://itunes.apple.com/search?term=todo&country=KR&media=software&lang=ko_KR&limit=10"
+            guard let text = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return Disposables.create() }
+            
+            let urlString = "https://itunes.apple.com/search?term=\(text)&country=KR&media=software&lang=ko_KR&limit=10"
             
             guard let url = URL(string: urlString) else {
                 observer.onError(APIError.invalidURL)

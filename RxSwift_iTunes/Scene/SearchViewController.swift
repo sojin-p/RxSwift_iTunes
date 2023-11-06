@@ -22,6 +22,8 @@ final class SearchViewController: UIViewController {
        return view
      }()
     
+    let searchController = UISearchController(searchResultsController: nil)
+    
     let data: [AppInfo] = []
     
     lazy var items = BehaviorSubject(value: data)
@@ -36,7 +38,6 @@ final class SearchViewController: UIViewController {
         configure()
         bind()
         setSearchController()
-        callRequest()
     }
     
     private func bind() {
@@ -52,10 +53,19 @@ final class SearchViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
+        searchController.searchBar.rx.searchButtonClicked
+            .withLatestFrom(searchController.searchBar.rx.text.orEmpty, resultSelector: { _, text in
+                return text
+            })
+            .subscribe(with: self) { owner, text in
+                owner.callRequest(query: text)
+            }
+            .disposed(by: disposeBag)
+        
     }
     
-    private func callRequest() {
-        let request = APIManager.shared.fetchData()
+    private func callRequest(query: String) {
+        let request = APIManager.shared.fetchData(query: query)
             .asDriver(onErrorJustReturn: SearchAppModel(resultCount: 0, results: []))
         
         request
@@ -71,7 +81,6 @@ final class SearchViewController: UIViewController {
 extension SearchViewController {
     
     private func setSearchController() {
-        let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.placeholder = "게임, 앱, 스토리 등"
         navigationItem.searchController = searchController
         navigationItem.title = "검색"
