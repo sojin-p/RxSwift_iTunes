@@ -24,9 +24,7 @@ final class SearchViewController: UIViewController {
     
     let searchController = UISearchController(searchResultsController: nil)
     
-    let data: [AppInfo] = []
-    
-    lazy var items = BehaviorSubject(value: data)
+    let viewModel = SearchViewModel()
     
     let disposeBag = DisposeBag()
 
@@ -42,7 +40,7 @@ final class SearchViewController: UIViewController {
     
     private func bind() {
         
-        items
+        viewModel.items
             .bind(to: tableView.rx.items(cellIdentifier: SearchTableViewCell.identifier, cellType: SearchTableViewCell.self)) { (row, element, cell) in
                 
                 cell.configureCell(element: element)
@@ -55,19 +53,7 @@ final class SearchViewController: UIViewController {
                 return text
             })
             .subscribe(with: self) { owner, text in
-                owner.callRequest(query: text)
-            }
-            .disposed(by: disposeBag)
-        
-    }
-    
-    private func callRequest(query: String) {
-        let request = APIManager.shared.fetchData(query: query)
-            .asDriver(onErrorJustReturn: SearchAppModel(resultCount: 0, results: []))
-        
-        request
-            .drive(with: self) { owner, data in
-                owner.items.onNext(data.results)
+                owner.viewModel.callRequest(query: text)
             }
             .disposed(by: disposeBag)
         
