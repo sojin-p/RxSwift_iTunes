@@ -49,6 +49,13 @@ final class SearchTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func configureCell(element: AppInfo) {
+        appNameLabel.text = element.trackName
+        
+        let url = URL(string: element.artworkUrl512)
+        appIconImageView.kf.setImage(with: url)
+    }
+    
     private func configure() {
         contentView.addSubview(appNameLabel)
         contentView.addSubview(appIconImageView)

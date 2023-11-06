@@ -45,10 +45,7 @@ final class SearchViewController: UIViewController {
         items
             .bind(to: tableView.rx.items(cellIdentifier: SearchTableViewCell.identifier, cellType: SearchTableViewCell.self)) { (row, element, cell) in
                 
-                cell.appNameLabel.text = element.trackName
-                
-                let url = URL(string: element.artworkUrl512)
-                cell.appIconImageView.kf.setImage(with: url)
+                cell.configureCell(element: element)
                 
             }
             .disposed(by: disposeBag)
