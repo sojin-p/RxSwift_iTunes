@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
+import Kingfisher
 
 final class SearchViewController: UIViewController {
     
@@ -42,8 +43,12 @@ final class SearchViewController: UIViewController {
         
         items
             .bind(to: tableView.rx.items(cellIdentifier: SearchTableViewCell.identifier, cellType: SearchTableViewCell.self)) { (row, element, cell) in
+                
                 cell.appNameLabel.text = element.trackName
-                cell.appIconImageView.backgroundColor = .systemYellow
+                
+                let url = URL(string: element.artworkUrl512)
+                cell.appIconImageView.kf.setImage(with: url)
+                
             }
             .disposed(by: disposeBag)
         
