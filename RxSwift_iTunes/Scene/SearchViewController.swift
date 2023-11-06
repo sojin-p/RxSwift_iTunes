@@ -26,12 +26,15 @@ final class SearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = .white
+        
         configure()
         bind()
+        setSearchController()
     }
     
-    func bind() {
+    private func bind() {
         
         items
             .bind(to: tableView.rx.items(cellIdentifier: SearchTableViewCell.identifier, cellType: SearchTableViewCell.self)) { (row, element, cell) in
@@ -45,6 +48,15 @@ final class SearchViewController: UIViewController {
 }
 
 extension SearchViewController {
+    
+    private func setSearchController() {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.placeholder = "게임, 앱, 스토리 등"
+        navigationItem.searchController = searchController
+        navigationItem.title = "검색"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.hidesSearchBarWhenScrolling = false
+    }
     
     private func configure() {
         view.addSubview(tableView)
