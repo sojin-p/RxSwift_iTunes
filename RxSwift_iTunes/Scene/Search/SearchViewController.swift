@@ -17,7 +17,8 @@ final class SearchViewController: UIViewController {
        let view = UITableView()
         view.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.identifier)
         view.backgroundColor = .white
-        view.rowHeight = 80
+        view.estimatedRowHeight = 250
+        view.rowHeight = UITableView.automaticDimension
         view.separatorStyle = .none
        return view
      }()
