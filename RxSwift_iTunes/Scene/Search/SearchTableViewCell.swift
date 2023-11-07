@@ -66,20 +66,17 @@ final class SearchTableViewCell: UITableViewCell {
     
     let rateLabel = {
         let label = UILabel()
-        label.text = "4.9"
         return label
     }()
     
     let sellerNameLabel = {
         let label = UILabel()
-        label.text = "Sojin Park"
         label.textAlignment = .center
         return label
     }()
     
     let genreLabel = {
         let label = UILabel()
-        label.text = "라이프 스타일"
         label.textAlignment = .right
         return label
     }()
