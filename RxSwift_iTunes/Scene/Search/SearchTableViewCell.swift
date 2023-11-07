@@ -113,6 +113,20 @@ final class SearchTableViewCell: UITableViewCell {
         
         let url = URL(string: element.artworkUrl512)
         appIconImageView.kf.setImage(with: url)
+        
+        let screenshotUrls = element.screenshotUrls
+        let test = [screenshotImageview1, screenshotImageview2, screenshotImageview3]
+        
+        for (index, value) in test.enumerated() {
+            if let url = URL(string: screenshotUrls[index]) {
+                value.kf.setImage(with: url)
+            }
+        }
+        
+        rateLabel.text = String(format: "%.1f", element.averageUserRating)
+        sellerNameLabel.text = element.sellerName
+        genreLabel.text = element.genres[0]
+        
     }
     
     private func configure() {
@@ -125,10 +139,10 @@ final class SearchTableViewCell: UITableViewCell {
         [screenshotImageview1, screenshotImageview2, screenshotImageview3].forEach {
             screenStackView.addArrangedSubview($0)
             $0.contentMode = .scaleAspectFit
-            $0.backgroundColor = .systemYellow
             $0.layer.cornerRadius = 10
             $0.layer.borderWidth = 1
             $0.layer.borderColor = UIColor.systemGray5.cgColor
+            $0.clipsToBounds = true
         }
         
         [rateLabel, sellerNameLabel, genreLabel].forEach {
@@ -171,7 +185,7 @@ final class SearchTableViewCell: UITableViewCell {
         
         screenStackView.snp.makeConstraints {
             $0.top.equalTo(labelStackView.snp.bottom).offset(8)
-            $0.height.equalTo(appIconImageView.snp.height).multipliedBy(3.5)
+            $0.height.equalTo(appIconImageView.snp.height).multipliedBy(3.2)
             $0.horizontalEdges.equalToSuperview().inset(20)
             $0.bottom.equalToSuperview().offset(-10)
         }
