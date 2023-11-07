@@ -38,11 +38,70 @@ final class SearchTableViewCell: UITableViewCell {
         return button
     }()
     
+    let labelStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .equalSpacing
+        stackView.alignment = .center
+        return stackView
+    }()
+    
+    let rateStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .fill
+        stackView.alignment = .center
+        stackView.spacing = 4
+        return stackView
+    }()
+    
+    let rateImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "star.fill")
+        imageView.tintColor = .gray
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
+    let rateLabel = {
+        let label = UILabel()
+        label.text = "4.9"
+        return label
+    }()
+    
+    let sellerNameLabel = {
+        let label = UILabel()
+        label.text = "Sojin Park"
+        label.textAlignment = .center
+        return label
+    }()
+    
+    let genreLabel = {
+        let label = UILabel()
+        label.text = "라이프 스타일"
+        label.textAlignment = .right
+        return label
+    }()
+    
+    let screenStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.spacing = 12
+        return stackView
+    }()
+    
+    let screenshotImageview1 = UIImageView()
+    let screenshotImageview2 = UIImageView()
+    let screenshotImageview3 = UIImageView()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         self.selectionStyle = .none
+        
         configure()
+        setConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -57,12 +116,32 @@ final class SearchTableViewCell: UITableViewCell {
     }
     
     private func configure() {
-        contentView.addSubview(appNameLabel)
-        contentView.addSubview(appIconImageView)
-        contentView.addSubview(downloadButton)
+        [appNameLabel, appIconImageView, downloadButton, labelStackView, screenStackView].forEach { contentView.addSubview($0) }
+        
+        [rateStackView, sellerNameLabel, genreLabel].forEach { labelStackView.addArrangedSubview($0) }
+        
+        [rateImageView, rateLabel].forEach { rateStackView.addArrangedSubview($0) }
+        
+        [screenshotImageview1, screenshotImageview2, screenshotImageview3].forEach {
+            screenStackView.addArrangedSubview($0)
+            $0.contentMode = .scaleAspectFit
+            $0.backgroundColor = .systemYellow
+            $0.layer.cornerRadius = 10
+            $0.layer.borderWidth = 1
+            $0.layer.borderColor = UIColor.systemGray5.cgColor
+        }
+        
+        [rateLabel, sellerNameLabel, genreLabel].forEach {
+            $0.font = .systemFont(ofSize: 14, weight: .bold)
+            $0.textColor = .gray
+        }
+    
+    }
+    
+    private func setConstraints() {
         
         appIconImageView.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
+            $0.top.equalToSuperview().offset(10)
             $0.leading.equalTo(20)
             $0.size.equalTo(60)
         }
@@ -79,6 +158,24 @@ final class SearchTableViewCell: UITableViewCell {
             $0.height.equalTo(32)
             $0.width.equalTo(72)
         }
+        
+        labelStackView.snp.makeConstraints {
+            $0.top.equalTo(appIconImageView.snp.bottom).offset(8)
+            $0.horizontalEdges.equalToSuperview().inset(23)
+            $0.height.equalTo(23)
+        }
+        
+        rateImageView.snp.makeConstraints {
+            $0.width.equalTo(labelStackView.snp.height)
+        }
+        
+        screenStackView.snp.makeConstraints {
+            $0.top.equalTo(labelStackView.snp.bottom).offset(8)
+            $0.height.equalTo(appIconImageView.snp.height).multipliedBy(3.5)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.bottom.equalToSuperview().offset(-10)
+        }
+        
     }
     
 }
