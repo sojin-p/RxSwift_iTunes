@@ -43,6 +43,7 @@ final class SearchTableViewCell: UITableViewCell {
         stackView.axis = .horizontal
         stackView.distribution = .equalSpacing
         stackView.alignment = .center
+        stackView.spacing = 15
         return stackView
     }()
     
@@ -149,7 +150,14 @@ final class SearchTableViewCell: UITableViewCell {
             $0.font = .systemFont(ofSize: 14, weight: .bold)
             $0.textColor = .gray
         }
-    
+        
+        rateStackView.setContentHuggingPriority(.init(250), for: .horizontal)
+        rateStackView.setContentCompressionResistancePriority(.init(751), for: .horizontal)
+        sellerNameLabel.setContentHuggingPriority(.init(250), for: .horizontal)
+        sellerNameLabel.setContentCompressionResistancePriority(.init(750), for: .horizontal)
+        genreLabel.setContentHuggingPriority(.init(251), for: .horizontal)
+        genreLabel.setContentCompressionResistancePriority(.init(751), for: .horizontal)
+        
     }
     
     private func setConstraints() {
