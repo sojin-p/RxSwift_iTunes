@@ -41,20 +41,18 @@ final class SearchViewController: UIViewController {
     
     private func bind() {
         
-        viewModel.items
-            .bind(to: tableView.rx.items(cellIdentifier: SearchTableViewCell.identifier, cellType: SearchTableViewCell.self)) { (row, element, cell) in
+        let input = SearchViewModel.Input(
+            searchButtonClicked:  searchController.searchBar.rx.searchButtonClicked,
+            searchText: searchController.searchBar.rx.text)
+        
+        let output = viewModel.transform(input: input)
+        
+        output.items
+            .asDriver()
+            .drive(tableView.rx.items(cellIdentifier: SearchTableViewCell.identifier, cellType: SearchTableViewCell.self)) { (row, element, cell) in
                 
                 cell.configureCell(element: element)
                 
-            }
-            .disposed(by: disposeBag)
-        
-        searchController.searchBar.rx.searchButtonClicked
-            .withLatestFrom(searchController.searchBar.rx.text.orEmpty, resultSelector: { _, text in
-                return text
-            })
-            .subscribe(with: self) { owner, text in
-                owner.viewModel.callRequest(query: text)
             }
             .disposed(by: disposeBag)
         

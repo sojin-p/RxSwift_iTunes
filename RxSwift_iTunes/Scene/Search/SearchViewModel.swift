@@ -7,24 +7,39 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 final class SearchViewModel {
     
-    let data: [AppInfo] = []
+    struct Input {
+        let searchButtonClicked: ControlEvent<Void>
+        let searchText: ControlProperty<String?>
+    }
     
-    lazy var items = BehaviorSubject(value: data)
+    struct Output {
+        let items: BehaviorRelay<[AppInfo]>
+    }
+    
+    var data: [AppInfo] = []
     
     let disposeBag = DisposeBag()
     
-    func callRequest(query: String) {
-        let request = APIManager.shared.fetchData(query: query)
-            .asDriver(onErrorJustReturn: SearchAppModel(resultCount: 0, results: []))
+    func transform(input: Input) -> Output {
         
-        request
-            .drive(with: self) { owner, data in
-                owner.items.onNext(data.results)
+        let searchList = BehaviorRelay(value: data)
+        
+        input.searchButtonClicked
+            .withLatestFrom(input.searchText.orEmpty, resultSelector: { _, text in
+                return text
+            })
+            .flatMap { APIManager.shared.fetchData(query: $0) }
+            .subscribe(with: self) { owner, data in
+                let data = data.results
+                searchList.accept(data)
             }
             .disposed(by: disposeBag)
+        
+        return Output(items: searchList)
         
     }
 }
