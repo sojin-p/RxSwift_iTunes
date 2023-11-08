@@ -14,14 +14,14 @@ import Kingfisher
 final class SearchViewController: UIViewController {
     
     private let tableView: UITableView = {
-       let view = UITableView()
+        let view = UITableView()
         view.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.identifier)
         view.backgroundColor = .white
         view.estimatedRowHeight = 250
         view.rowHeight = UITableView.automaticDimension
         view.separatorStyle = .none
-       return view
-     }()
+        return view
+    }()
     
     let searchController = UISearchController(searchResultsController: nil)
     
